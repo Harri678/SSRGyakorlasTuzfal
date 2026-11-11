@@ -4,12 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <%= title %>
     </title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1><%= title %></h1>
-    Hello EJS!
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>priority</th>
+                <th>mac</th>
+                <th>enabled</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% szabalyok.forEach(szabaly => { %>
+                <% if(szabaly.enabled){ %>
+                    <tr>
+                <%} else{%>
+                    <tr style="font-style: italic; color: gray;">
+                <%  } %> 
+                    <td><%= szabaly.id %> </td>
+                    <td><%= szabaly.priority %> </td>
+                    <td><%= szabaly.mac %> </td>
+                    <td><%= szabaly.enabled ? "enabled" : "disabled" %> </td>
+                </tr>
+            <%  }); %> 
+        </tbody>
+    </table>
+
+    <form method="post">
+        <label>prioritas: </label>
+        <input type="number" name="priority">
+
+        <label>Enabled: </label>
+        <input type="checkbox" name="enabled">
+
+        <label>Mac: </label>
+        <input type="text" name="mac">
+
+        <button type="submit">Submit</button>
+
+    </form>
+    <% errors.forEach(error => { %>
+        <p><%= error %> </p>
+    <%  }); %> 
 </body>
 </html>
